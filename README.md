@@ -30,7 +30,7 @@ Create a password for user `root`. If it is a production server, make sure to cr
 Log in to mongo container
 
 ```
-$ mongo -u root -p example --authenticationDatabase admin a_database
+$ mongo -u root -p example --authenticationDatabase admin fluentd
 > db.createUser({ user : "docker", pwd : "example", roles: [ {db: "fluentd", role: "readWrite"}]})
 Successfully added user: {
 	"user" : "docker",
