@@ -19,6 +19,8 @@ environment:
   - FLUENTD_CONF=fluentd.cfg
 ```
 
+Configure appropriate username/password for each `match` section in the configuration files.
+
 # MongoDB
 
 ## Administration user
