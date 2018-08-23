@@ -1,32 +1,25 @@
-<source>
-   @type forward
-</source>
+#<source>
+#  @type tail
+#  path /fluentd/sources/dionaea/dionaea_incident.json 
+#  pos_file /fluentd/pos/dionaea_incident.json.pos
+#  tag dionaea.incident
+#  format json
+#</source>
 
-<filter docker.wp.**>
-  @type parser
-  key_name log
-  <parse>
-    @type apache2
-  </parse>
-  reserve_data true
-</filter>
+#<source>
+#  @type tail
+#  path /fluentd/sources/dionaea/dionaea.json 
+#  pos_file /fluentd/pos/dionaea.json.pos
+#  tag dionaea.log
+#  format json
+#</source>
 
-<filter docker.nginx.**>
-  @type parser
-  key_name log
-  <parse>
-    @type nginx
-  </parse>
-  reserve_data true
-</filter>
-
-# MongoDB/docker.wp
-<match docker.wp.**>
+<match dionaea.incident>
   @type mongo
   host mongo
   port 27017
-  database wp
-  collection apache2
+  database dionaea
+  collection incident
 
   # for capped collection
   capped
@@ -47,13 +40,12 @@
   </buffer>
 </match>
 
-# MongoDB/docker.nginx
-<match docker.nginx.**>
+<match dionaea.log>
   @type mongo
   host mongo
   port 27017
-  database wp
-  collection nginx
+  database dionaea
+  collection log
 
   # for capped collection
   capped

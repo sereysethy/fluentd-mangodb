@@ -1,4 +1,1 @@
-fluentd.cfg
-cowrie.cfg
-wordpress.cfg
-dionaea.cfg
+*.cfg

@@ -1,0 +1,15 @@
+# Use this for forward flux from docker
+<source>
+   @type forward
+</source>
+
+# fluentd can also get JSON data from http/POST
+# where the name of url path correspond to match keyword
+# curl -X POST -d 'json={"foo":"bar"}' http://localhost:9880/app.log
+<source>
+  @type http
+  port 9880
+</source>
+
+@include wordpress.cfg
+@include dionaea.cfg

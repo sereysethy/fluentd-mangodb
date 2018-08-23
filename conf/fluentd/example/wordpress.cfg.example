@@ -1,0 +1,44 @@
+<filter docker.wp.**>
+  @type parser
+  key_name log
+  <parse>
+    @type apache2
+  </parse>
+  reserve_data true
+</filter>
+
+#<filter docker.nginx.**>
+#  @type parser
+#  key_name log
+#  <parse>
+#    @type nginx
+#  </parse>
+#  reserve_data true
+#</filter>
+
+# MongoDB/docker.wp
+<match docker.wp.**>
+  @type mongo
+  host mongo
+  port 27017
+  database docker
+  collection wp
+
+  # for capped collection
+  capped
+  capped_size 1024m
+
+  # authentication
+  user docker
+  password example
+
+  <inject>
+    # key name of timestamp
+    time_key time
+  </inject>
+
+  <buffer>
+    # flush
+    flush_interval 10s
+  </buffer>
+</match>

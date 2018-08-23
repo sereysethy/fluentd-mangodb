@@ -29,7 +29,10 @@ Create a password for user `root`. If it is a production server, make sure to cr
 
 ## How to create username application/docker user
 
-Log in to mongo container
+Log in to mongo container in order to create appropriate username/password for each mongodb database.
+
+As an example, user name `docker` is created with a password `example` for `read/write` access on database name `fluentd`.
+
 
 ```
 $ mongo -u root -p example --authenticationDatabase admin fluentd
